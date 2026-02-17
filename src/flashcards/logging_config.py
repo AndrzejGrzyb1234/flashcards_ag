@@ -9,7 +9,7 @@ def configure_logging() -> None:
     """Configure loggers, handlers, and formatters."""
     # logger - save of one logg, than give to handler
     # handler - serves logg, eg. filehandler - save to file
-    # formatter - define how logg record looks like    
+    # formatter - define how logg record looks like
     level: str = os.getenv("LOG_LEVEL", "INFO").upper()
 
     handlers = {
