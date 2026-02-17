@@ -6,7 +6,7 @@ from pythonjsonlogger import json
 
 
 def configure_logging() -> None:
-    """Configure loggers, handlers and formaters."""
+    """Configure loggers, handlers, and formatters."""
     # logger - save of one logg, than give to handler
     # handler - serves logg, eg. filehandler - save to file
     # formatter - define how logg record looks like
@@ -24,30 +24,22 @@ def configure_logging() -> None:
             "formatter": "json",
             "level": level,
             "filename": "app.log",
-            "maxBytes": 10_485_860,
+            "maxBytes": 10_485_760,
             "backupCount": 5,
             "encoding": "utf-8",
-        }
+        },
     }
 
     formatters = {
-        "json": {
-            "()": json.JsonFormatter,
-            "format": "%(asctime)s %(name)s %(levelname)s %(message)s %(module)s"
-        }
+        "json": {"()": json.JsonFormatter, "format": "%(asctime)s %(name)s %(levelname)s %(message)s %(module)s"}
     }
 
     logging.config.dictConfig(
-        config={
+        {
             "version": 1,
             "disable_existing_loggers": False,
             "formatters": formatters,
             "handlers": handlers,
-            "root": {
-                "handlers": ["console", "file"],
-                "level": level
-            }
+            "root": {"handlers": ["console", "file"], "level": level},
         }
     )
-
-
